@@ -5,11 +5,11 @@ import { inter } from '@/app/ui/fonts'
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;  
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased bg-black-200`}>{children}</body>
     </html>
   );
 }
