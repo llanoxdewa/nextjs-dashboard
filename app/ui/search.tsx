@@ -19,6 +19,8 @@ export default function Search({ placeholder }: { placeholder: string }) {
       searchQuery.delete('query')
     else
       searchQuery.set('query', inputValue)
+
+    // modify the current url -> pathname
     router.replace(`${pathname}?${searchQuery.toString()}`)
 
   }, 300)
