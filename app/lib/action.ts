@@ -5,10 +5,12 @@ import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+
+// this is used for typed check
 const FormSchema = z.object({
   id: z.string(),
   customerId: z.string(),
-  amount: z.coerce.number(),
+  amount: z.coerce.number(), // memaksa mengubah data menjadi type number
   status: z.enum(['pending', 'paid']),
   date: z.string(),
 });
@@ -16,6 +18,7 @@ const FormSchema = z.object({
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
 
 export async function createInvoice(formData: FormData) {
+
   const { customerId, amount, status } = CreateInvoice.parse({
     customerId: formData.get('customerId'),
     amount: formData.get('amount'),
@@ -23,6 +26,7 @@ export async function createInvoice(formData: FormData) {
   })
   const amountInCents = amount * 100;
   const date = new Date().toISOString().split('T')[0];
+
 
   await sql`
     INSERT INTO invoices (customer_id, amount, status, date)
@@ -47,6 +51,7 @@ export async function updateInvoice(id: string, formData: FormData) {
   });
  
   const amountInCents = amount * 100;
+
  
   await sql`
     UPDATE invoices
@@ -59,4 +64,9 @@ export async function updateInvoice(id: string, formData: FormData) {
 }
 
 
+export async function deleteInvoice(id: string) {
 
+
+  await sql`DELETE FROM invoices WHERE id = ${id}`;
+  revalidatePath('/dashboard/invoices');
+}
