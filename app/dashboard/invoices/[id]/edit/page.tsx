@@ -2,6 +2,7 @@ import React from 'react';
 import Form from '@/app/ui/invoices/edit-form';
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 import { fetchInvoiceById, fetchCustomers } from '@/app/lib/data';
+import { notFound } from 'next/navigation';
 // import { updateInvoice } from '@/app/lib/action';
 
 
@@ -11,6 +12,10 @@ export default async function Page({ params }: { params: { id: string } }) {
 		fetchInvoiceById(id),
 		fetchCustomers(),
 	]);
+
+	if(!invoice)
+		notFound()
+
 	return (
 		<main>
 			<Breadcrumbs
