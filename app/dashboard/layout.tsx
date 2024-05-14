@@ -1,5 +1,16 @@
 import React from 'react';
 import SideNav from '@/app/ui/dashboard/sidenav'
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: {
+    default: 'dashboard',
+    template: '%s | dashboard'
+  },
+  description: 'The official Next.js Learn Dashboard built with App Router.'
+}
+
+
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

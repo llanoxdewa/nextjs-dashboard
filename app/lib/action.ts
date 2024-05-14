@@ -119,7 +119,6 @@ export async function updateInvoice(prevState: State,formData: FormData,id: stri
 
 
 export async function deleteInvoice(id: string) {
-  throw new Error('something wrong :(');
 
 
   try {

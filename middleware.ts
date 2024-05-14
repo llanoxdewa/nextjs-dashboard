@@ -10,6 +10,6 @@ export const config = {
   // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
   matcher: [
     '/dashboard/(.*)',
-    // '/((?!api|_next/static|_next/image|.*\\.png$).*)',
+    '/((?!api|_next/static|_next/image|.*\\.png$).*)',
   ]
 };
