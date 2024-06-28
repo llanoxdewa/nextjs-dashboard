@@ -13,8 +13,6 @@ export const metadata: Metadata = {
   title: 'invoice'
 }
 
-
-
 export default async function Page({
   searchParams
 }: {
